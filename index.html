@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts</title>
+    <style>
+        /* CSS Styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #fact {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        #fact.show {
+            transform: scale(1.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fun Facts</h1>
+    <div id="fact">Click the button to see a fun fact!</div>
+    <button id="showFactBtn">Show Fun Fact</button>
+    <button id="shareTwitterBtn">Share on Twitter</button>
+
+    <script>
+        // JavaScript Functionality
+        const facts = [
+            "Honey never spoils.",
+            "A single strand of Spaghetti is called a 'Spaghetto'.",
+            "Octopuses have three hearts.",
+            "Bananas are berries, but strawberries aren't.",
+            "A group of flamingos is called a 'flamboyance'."
+        ];
+
+        const factDiv = document.getElementById('fact');
+        const showFactBtn = document.getElementById('showFactBtn');
+        const shareTwitterBtn = document.getElementById('shareTwitterBtn');
+
+        showFactBtn.addEventListener('click', () => {
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            factDiv.textContent = randomFact;
+            factDiv.classList.add('show');
+            setTimeout(() => factDiv.classList.remove('show'), 300);
+        });
+
+        shareTwitterBtn.addEventListener('click', () => {
+            const text = encodeURIComponent(factDiv.textContent);
+            const url = `https://twitter.com/intent/tweet?text=${text}`;
+            window.open(url, '_blank');
+        });
+    </script>
+
+</body>
+</html>
